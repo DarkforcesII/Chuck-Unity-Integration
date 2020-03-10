@@ -36,6 +36,9 @@ public class MovementInput : MonoBehaviour {
     public float verticalVel;
     private Vector3 moveVector;
 
+    public float YIncrement;
+    private Vector3 JumpPos;
+
 	// Use this for initialization
 	void Start () {
 		anim = this.GetComponent<Animator> ();
@@ -56,9 +59,19 @@ public class MovementInput : MonoBehaviour {
         {
             verticalVel -= 1;
         }
-        moveVector = new Vector3(0, verticalVel * .2f * Time.deltaTime, 0);
+        // original moveVector
+        //moveVector = new Vector3(0, verticalVel * .2f * Time.deltaTime, 0);
+        // new moveVector
+        moveVector = new Vector3(0, verticalVel * .4f * Time.deltaTime, 0);
         controller.Move(moveVector);
 
+        // Jump
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //JumpPos = new Vector3(transform.position.x, transform.position.y + YIncrement, transform.position.z);
+            PlayerJump();
+            Debug.Log(transform.position.y);
+        }
 
     }
 
@@ -87,6 +100,7 @@ public class MovementInput : MonoBehaviour {
     public void LookAt(Vector3 pos)
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(pos), desiredRotationSpeed);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.identity, desiredRotationSpeed);
     }
 
     public void RotateToCamera(Transform t)
@@ -121,4 +135,11 @@ public class MovementInput : MonoBehaviour {
 			anim.SetFloat ("Blend", Speed, StopAnimTime, Time.deltaTime);
 		}
 	}
+
+    void PlayerJump()
+    {
+        //JumpPos = new Vector3(transform.position.x, transform.position.y + YIncrement, transform.position.z);
+        //YIncrement = transform.position.y + 10;
+        verticalVel += YIncrement;
+    }
 }
