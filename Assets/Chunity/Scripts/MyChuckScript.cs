@@ -13,6 +13,20 @@ public class MyChuckScript : MonoBehaviour
     [SerializeField] AudioSource[] ChunitySources;
     [SerializeField] AudioClip[] ChunityClips;
 
+    // Footsteps
+    private AudioSource SFXSource;
+    [SerializeField] float pitchMin, pitchMax;
+
+    private void Awake()
+    {
+        SFXSource = this.gameObject.AddComponent<AudioSource>();
+
+        // Assigning audio mixer child to each audio source
+        AudioMixer MasterMixer = Resources.Load("MyChucK") as AudioMixer;
+        string MixerGroup_2 = "SFX";
+        SFXSource.outputAudioMixerGroup = MasterMixer.FindMatchingGroups(MixerGroup_2)[0];
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +37,15 @@ public class MyChuckScript : MonoBehaviour
         Chuck.Manager.Initialize(MyChucK, Music);
         PlayMusic();
 
-        // Unity
+        // Music
         ChunitySources[1] = GetComponent<AudioSource>();
         ChunitySources[1].clip = ChunityClips[0];
         ChunitySources[1].Play();
         StartCoroutine(ChunityLoop());
+
+        // SFX
+        SFXSource.clip = ChunityClips[2];
+        SFXSource.pitch = Random.Range(pitchMin, pitchMax);
     }
 
     void ChuckAlgorithm_3()
@@ -63,6 +81,11 @@ public class MyChuckScript : MonoBehaviour
 
         0.0 => s.gain;
         0.3::second => now; ");
+    }
+
+    void PlayFootSteps()
+    {
+        SFXSource.Play();
     }
 
     void PlayMusic()
