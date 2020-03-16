@@ -47,7 +47,6 @@ AudioMixerGroupController:
   m_Pitch: a1c346620fc6e8049a51379674fa473a
   m_Send: 00000000000000000000000000000000
   m_Effects:
-  - {fileID: 2023844818892039035}
   - {fileID: -5057450448002074347}
   m_UserColorIndex: 0
   m_Mute: 0
@@ -68,9 +67,7 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters:
-  - guid: 2e3f6daa5cf14584ca16f9bacfb84113
-    name: SFX
+  m_ExposedParameters: []
   m_AudioMixerGroupViews:
   - guids:
     - a05fb47f061cd0f43a078767dc106b09
@@ -125,22 +122,6 @@ AudioMixerSnapshotController:
   m_SnapshotID: c952195ab2d013b4cbe0480d316cf2cb
   m_FloatValues: {}
   m_TransitionOverrides: {}
---- !u!244 &2023844818892039035
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: b4ba6d6333bacd54eb854172dbc47478
-  m_EffectName: ChucK
-  m_MixLevel: c845bb8abd05c974c897aac67f336f1e
-  m_Parameters:
-  - m_ParameterName: ChucK ID
-    m_GUID: 2e3f6daa5cf14584ca16f9bacfb84113
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!244 &2660905695463425223
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
